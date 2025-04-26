@@ -4,14 +4,14 @@ for iface in $(ip -o link show | awk -F': ' '/link\/ether/ {print $2}'); do
     break 
   fi 
 done 
-arch="/etc/netplan/20_perso_loyola.yaml" 
+arch="/etc/netplan/99_enable-wol.yaml" 
 cont="network: 
 ethernets: 
   myinterface: 
   	match: 
-			macaddress: $mac_address 
+        	macaddress: $mac_address 
   	set-name: NetName 
-		dhcp4: true 
-		wakeonlan: on" 
+	dhcp4: true 
+	wakeonlan: on" 
 echo "$cont" > $arch 
 echo "file $arch created" 
