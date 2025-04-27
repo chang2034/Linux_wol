@@ -1,5 +1,5 @@
 for iface in $(ip -o link show | awk -F': ' '/link\/ether/ {print $2}'); do 
-  if [[ -f /sys/class/net/$iface/carrier ]] && [[ $(cat /sys/class/net/$iface/carrier) -eq 1 ]]; then 
+  if [ -f /sys/class/net/$iface/carrier ] && [ $(cat /sys/class/net/$iface/carrier) -eq 1 ]; then 
     mac_address=$(ip link show "$iface" | awk '/link\/ether/ {print $2}') 
     break 
   fi 
